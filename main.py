@@ -4,7 +4,7 @@ import ssl
 
 ssl._create_default_https_context = ssl._create_unverified_context
 
-webhook = "https://discord.com/api/webhooks/1039873910302310463/5dRCWhSTc4snYlHGL4twNhWEUQcrb2tUOTMXFwvcKbppwzdpZaG6afDVfy_dGs_7V-Jm"
+webhook = ""
 
 # Search :
 query_options = {

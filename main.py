@@ -1,10 +1,14 @@
 import requests
 from marmiton import Marmiton
 import ssl
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 ssl._create_default_https_context = ssl._create_unverified_context
 
-webhook = "https://discord.com/api/webhooks/1041675147481985026/4qr1pUQdSkd6nvYaUjVMimLK-SJB6rLfYGNWGDQhrYoRAUHcHzySsaD7XPAffG0LyTyG"
+webhook = os.getenv("webhook")
 
 # Search :
 query_options = {

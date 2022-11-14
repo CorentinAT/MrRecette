@@ -27,7 +27,7 @@ detailed_recipe = Marmiton.get(recipe_url)
 
 ingredients = ""
 for element in detailed_recipe["ingredients"]:
-    ingredients = ingredients + "\n" + element
+    ingredients = ingredients + "\n- " + element.title()
 
 etapes = ""
 i = 1
@@ -36,7 +36,7 @@ for element in detailed_recipe["steps"]:
     etapes = etapes + "\n" + str(i) + "- " + element
     i = i + 1
 
-msg = "**Ingrédients :**" + ingredients + "\n" + etapes
+msg = "**Ingrédients :**" + ingredients + "\n\n**Etapes :**" + etapes
 
 embed = [{
     "description": msg,

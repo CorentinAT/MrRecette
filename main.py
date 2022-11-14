@@ -1,5 +1,5 @@
 import requests
-from marmiton import Marmiton
+from marmiton import Marmiton #module modifié pour que les class correspondent aux mises à jour du site
 import ssl
 import os
 from dotenv import load_dotenv

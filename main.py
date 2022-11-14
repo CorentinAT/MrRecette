@@ -4,11 +4,11 @@ import ssl
 
 ssl._create_default_https_context = ssl._create_unverified_context
 
-webhook = ""
+webhook = "https://discord.com/api/webhooks/1041675147481985026/4qr1pUQdSkd6nvYaUjVMimLK-SJB6rLfYGNWGDQhrYoRAUHcHzySsaD7XPAffG0LyTyG"
 
 # Search :
 query_options = {
-  "aqt": "tomates farcies",  # Query keywords - separated by a white space
+  "aqt": "pates",  # Query keywords - separated by a white space
   "dt": "platprincipal",       # Plate type : "entree", "platprincipal", "accompagnement", "amusegueule", "sauce" (optional)
   "exp": 2,                    # Plate price : 1 -> Cheap, 2 -> Medium, 3 -> Kind of expensive (optional)
   "dif": 2,                    # Recipe difficulty : 1 -> Very easy, 2 -> Easy, 3 -> Medium, 4 -> Advanced (optional)
@@ -26,9 +26,11 @@ for element in detailed_recipe["ingredients"]:
     ingredients = ingredients + "\n" + element
 
 etapes = ""
+i = 1
 
 for element in detailed_recipe["steps"]:
-    etapes = etapes + element
+    etapes = etapes + "\n" + str(i) + "- " + element
+    i = i + 1
 
 msg = detailed_recipe["name"] + "\n**Ingrédients :**" + ingredients + "\n" + etapes
 

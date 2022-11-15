@@ -19,9 +19,9 @@ marmiton_recherche = "https://www.marmiton.org/recettes/recherche.aspx?"
 # Options de pour la recherche Marmiton (incomplet -> voir les filtres sur le site marmiton)
 options = {
     "dt": "platprincipal",       # Type de plat : "entree", "platprincipal", "accompagnement", "amusegueule", "sauce" (optionnel)
-    "exp": 1,                    # Plate price : 1 -> Cheap, 2 -> Medium, 3 -> Kind of expensive (optional)
-    "dif": 1,                    # Vegetarien only : 0 -> False, 1 -> True (optional)
-    "ttlt":45                    # Maximum preparation time : 15 -> -15min, 30 -> -30min, 45 -> -45min (optional)
+    "exp": 1,                    # Prix du plat : 1 -> Peu cher, 2 -> Moyen, 3 -> Plutôt cher (optionnel)
+    "dif": 1,                    # Difficulté : 1 -> Très facile, 2 -> Facile, 3 -> Moyen, 4 -> Difficile (optionnel)
+    "ttlt":45                    # Temps de préparation max : 15 -> -15min, 30 -> -30min, 45 -> -45min (optionnel)
 }
 
 #Recherche avec les options

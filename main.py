@@ -78,6 +78,7 @@ embed = [{
     "color": 1127128
 }]
 message = {
-    "embeds" : embed
+    "embeds": embed,
+    "content": "Recette du jour !"
 }
 requests.post(webhook, json=message)

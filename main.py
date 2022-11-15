@@ -46,6 +46,7 @@ recette = {
     'rate': recette_aleatoire.find('span', {'class':'SHRD__sc-10plygc-0 jHwZwD'}).get_text(),
     'url': marmiton + recette_aleatoire['href'],
     'ingredients': [],
+    'quantites': [],
     'etapes': []
 }
 
@@ -53,16 +54,20 @@ recette = {
 recette_html = urllib.request.urlopen(recette['url']).read()
 soup = BeautifulSoup(recette_html, 'html.parser')
 
-# Ingrédients et étapes ajoutés dans les attributs de la recette en tableaux
+# Ingrédients, quantités et étapes ajoutés dans les attributs de la recette en tableaux
 for element in soup.find_all('span', {'class':'RCP__sc-8cqrvd-3 itCXhd'}):
     recette['ingredients'].append(element.get_text())
+for element in soup.find_all('span', {'class':'SHRD__sc-10plygc-0 epviYI'}):
+    recette['quantites'].append(element.get_text())
 for element in soup.find_all('p', {'class':'RCP__sc-1wtzf9a-3 jFIVDw'}):
     recette['etapes'].append(element.get_text())
 
-# Mise en forme de texte la note et les tableaux ingrédients et étapes pour l'envoi discord
+# Mise en forme de texte la note et les tableaux ingrédients, quantités et étapes pour l'envoi discord
 ingredients_texte = "**Ingrédients :**"
+i = 0
 for element in recette['ingredients']:
-    ingredients_texte = ingredients_texte + "\n" + element.title()
+    ingredients_texte = ingredients_texte + "\n" + element.title() + ("" if recette['quantites'][i]=="" else f" **_({recette['quantites'][i]})_**")
+    i += 1
 etapes_texte = "**Etapes :**"
 i = 1
 for element in recette['etapes']:

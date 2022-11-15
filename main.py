@@ -33,7 +33,7 @@ soup = BeautifulSoup(resultat_html, 'html.parser')
 # Aller sur un numéro de page aléatoire dans le résultat de la recherche
 pages = soup.find_all('a', {'class':'SHRD__sc-1ymbfjb-1 MTkAM'})
 no_page_aleatoire = randint(0,17) # Ligne à adapter (ou mettre un try) en fonction de la recherche
-if no_page_aleatoire!=1:
+if no_page_aleatoire!=17:
     page_url = marmiton + pages[no_page_aleatoire]['href']
     resultat_html = urllib.request.urlopen(page_url).read()
     soup = BeautifulSoup(resultat_html, 'html.parser')

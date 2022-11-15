@@ -76,7 +76,8 @@ message_content = ingredients_texte + "\n\n" + etapes_texte
 
 embed = [{
     "description": message_content,
-    "title": recette["title"]
+    "title": recette["title"],
+    "color": 1127128
 }]
 
 message = {

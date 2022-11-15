@@ -1,5 +1,4 @@
 import requests
-from marmiton import Marmiton #module modifié pour que les class correspondent aux mises à jour du site
 import ssl
 import os
 import urllib
@@ -43,40 +42,45 @@ liste_recettes = soup.find_all('a', {'class':'MRTN__sc-1gofnyi-2 gACiYG'})
 recette_aleatoire = liste_recettes[randint(0,11)]
 
 recette = {
-    'name': recette_aleatoire.find('h4', {'class':'MRTN__sc-30rwkm-0 dJvfhM'}).get_text(),
-    'rate': recette_aleatoire.find('span', {'class':'SHRD__sc-10plygc-0 jHwZwD'}).get_text()
+    'title': recette_aleatoire.find('h4', {'class':'MRTN__sc-30rwkm-0 dJvfhM'}).get_text(),
+    'rate': recette_aleatoire.find('span', {'class':'SHRD__sc-10plygc-0 jHwZwD'}).get_text(),
+    'url': marmiton + recette_aleatoire['href'],
+    'ingredients': [],
+    'etapes': []
 }
 
-recette_url = marmiton + recette_aleatoire['href']
-print(recette_url)
-print(recette['name'])
-print(recette['rate'])
+# print(recette['url'])
+# print(recette['name'])
+# print(recette['rate'])
 
-"""# Get :
-recipe = query_result[0]
-recipe_url = recipe["url"]
-detailed_recipe = Marmiton.get(recipe_url)
+recette_html = urllib.request.urlopen(recette['url']).read()
+soup = BeautifulSoup(recette_html, 'html.parser')
 
-ingredients = ""
-for element in detailed_recipe["ingredients"]:
-    ingredients = ingredients + "\n- " + element.title()
+for element in soup.find_all('span', {'class':'RCP__sc-8cqrvd-3 itCXhd'}):
+    recette['ingredients'].append(element.get_text())
 
-etapes = ""
+for element in soup.find_all('p', {'class':'RCP__sc-1wtzf9a-3 jFIVDw'}):
+    recette['etapes'].append(element.get_text())
+
+ingredients_texte = "**Ingrédients :**"
+for element in recette['ingredients']:
+    ingredients_texte = ingredients_texte + "\n" + element.title()
+
+etapes_texte = "**Etapes :**"
 i = 1
-
-for element in detailed_recipe["steps"]:
-    etapes = etapes + "\n" + str(i) + "- " + element
+for element in recette['etapes']:
+    etapes_texte = etapes_texte + "\n" + str(i) + "- " + element
     i = i + 1
 
-msg = "**Ingrédients :**" + ingredients + "\n\n**Etapes :**" + etapes
+message_content = ingredients_texte + "\n\n" + etapes_texte
 
 embed = [{
-    "description": msg,
-    "title": detailed_recipe["name"]
+    "description": message_content,
+    "title": recette["title"]
 }]
 
 message = {
     "embeds" : embed
 }
 
-requests.post(webhook, json=message)"""
+requests.post(webhook, json=message)

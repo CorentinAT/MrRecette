@@ -61,7 +61,6 @@ for element in soup.find_all('div', {'class':'MuiGrid-root MuiGrid-item MuiGrid-
         recette['quantites'].append(qt.get_text())  
     except:
         recette['quantites'].append("")
-    print(recette['quantites'])
     try:
         ig = element.find('span', {'class':'RCP__sc-8cqrvd-3 cDbUWZ'})
         recette['ingredients'].append(ig.get_text())

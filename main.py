@@ -55,10 +55,19 @@ recette_html = urllib.request.urlopen(recette['url']).read()
 soup = BeautifulSoup(recette_html, 'html.parser')
 
 # Ingrédients, quantités et étapes ajoutés dans les attributs de la recette en tableaux
-for element in soup.find_all('span', {'class':'RCP__sc-8cqrvd-3 itCXhd'}):
-    recette['ingredients'].append(element.get_text())
-for element in soup.find_all('span', {'class':'SHRD__sc-10plygc-0 epviYI'}):
-    recette['quantites'].append(element.get_text())
+for element in soup.find_all('div', {'class':'MuiGrid-root MuiGrid-item MuiGrid-grid-xs-3 MuiGrid-grid-sm-3'}):
+    try:
+        qt = element.find('span', {'class':'SHRD__sc-10plygc-0 epviYI'})    
+        recette['quantites'].append(qt.get_text())  
+    except:
+        recette['quantites'].append("")
+    print(recette['quantites'])
+    try:
+        ig = element.find('span', {'class':'RCP__sc-8cqrvd-3 cDbUWZ'})
+        recette['ingredients'].append(ig.get_text())
+    except:
+        ig = element.find('span', {'class':'RCP__sc-8cqrvd-3 itCXhd'})
+        recette['ingredients'].append(ig.get_text())
 for element in soup.find_all('p', {'class':'RCP__sc-1wtzf9a-3 jFIVDw'}):
     recette['etapes'].append(element.get_text())
 
@@ -80,7 +89,7 @@ message_content = ingredients_texte + "\n\n" + etapes_texte + "\n\n" + note_text
 embed = [{
     "description": message_content,
     "title": recette["title"],
-    "color": 1127128
+    "color": randint(0,16777215)
 }]
 message = {
     "embeds": embed,

@@ -6,6 +6,8 @@ from dotenv import load_dotenv
 from bs4 import BeautifulSoup
 from random import randint
 
+#version class
+
 # Remplacer ces deux lignes par "webhook = <lien du webhook>"
 load_dotenv()
 webhook = os.getenv("webhook")

@@ -7,9 +7,6 @@
 # afficher les differentes parties de la recette (ingredients, auteur, etapes...)
 
 class Recette:
-
-    etapes = []
-
     """
 
     """
@@ -52,7 +49,9 @@ class Recette:
 
     def ajouter_ingr(self, nom:str, quantite=None):
         """
-
+        Ajouter ingrédient au tableau ingrédients de la recette.
+        Arguments: (nom:str, quantité:str(facultatif)).
+        Insere un sous tableau dans le tableau ingrédients.
         """
         if quantite:
             self.ingredients.append([nom, quantite])
@@ -61,7 +60,10 @@ class Recette:
 
     def ajouter_etape(self, etape, numero=None):
         """
-        
+        Ajouter une étape au tableau étapes de la recette.
+        Arguments: (description:str, numero (falcultatif):int).
+        Si pas de numéro d'étape ou numéro d'étape supérieur au nombre
+        d'étapes existantes : mise en dernier.
         """
         assert numero!=0, "L'étape 0 ne peut pas exister"
         if not numero or numero-1>len(self.etapes):

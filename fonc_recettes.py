@@ -18,10 +18,13 @@ class Ingredient:
         return f"{self.nom} : {self.quantite}"
 
 class Recette:
+
+    etapes = []
+
     """
 
     """
-    def __init__(self, nom=None, ingredients=None, etapes=None, auteur=None, lien=None, temps=None, difficulte=None, note=None):
+    def __init__(self, nom=None, ingredients=[], etapes=[], auteur=None, lien=None, temps=None, difficulte=None, note=None):
         self.nom = nom
         self.auteur = auteur
         self.lien = lien
@@ -54,4 +57,30 @@ class Recette:
         texte = ""
         i = 1
         for element in self.etapes:
-            texte = ("" if texte=="" else "\n") + f"{i}- {element}"
+            texte = texte + ("" if texte=="" else "\n") + f"{i}- {element}"
+            i += 1
+        return texte
+
+    def ajouter_ingr(self, nom:str, quantite=None):
+        """
+
+        """
+        if quantite:
+            self.ingredients.append([nom, quantite])
+        else:
+            self.ingredients.append([nom])
+
+    def ajouter_etape(self, etape, numero=None):
+        """
+        
+        """
+        assert numero!=0, "L'étape 0 ne peut pas exister"
+        if not numero or numero-1>len(self.etapes):
+            self.etapes.append(etape)
+        else:
+            l = len(self.etapes) - 1
+            self.etapes.append("")
+            while l>=numero-1:
+                self.etapes[l+1] = self.etapes[l]
+                l -= 1
+            self.etapes[numero-1] = etape

@@ -6,17 +6,6 @@
 # prendre une recette sur la page (choisie ou aleatoire)
 # afficher les differentes parties de la recette (ingredients, auteur, etapes...)
 
-class Ingredient:
-    """
-
-    """
-    def __init__(self, nom:str, quantite:str):
-        self.nom = nom
-        self.quantite = quantite
-    
-    def __str__(self) -> str:
-        return f"{self.nom} : {self.quantite}"
-
 class Recette:
 
     etapes = []

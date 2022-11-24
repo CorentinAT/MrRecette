@@ -25,14 +25,20 @@ class Marmiton:
     def __str__(self):
         return str(self.options)
 
-    def recherche(self):
+    def recherche(self, page=None):
         """
         """
         ssl._create_default_https_context = ssl._create_unverified_context
-        options_url = urllib.parse.urlencode(self.options)
+        options_recherche = self.options
+        if page and page>1:
+            options_recherche['page'] = page
+        options_url = urllib.parse.urlencode(options_recherche)
         recherche_url = "https://www.marmiton.org/recettes/recherche.aspx?" + options_url
-        resultat_html = urllib.request.urlopen(recherche_url).read()
-        soup = BeautifulSoup(resultat_html, 'html.parser')
+        try:
+            resultat_html = urllib.request.urlopen(recherche_url).read()
+            soup = BeautifulSoup(resultat_html, 'html.parser')
+        except:
+            raise ValueError("Cette page n'existe pas, essayez un nombre plus bas")
         resultats = []
         liste_fiches = soup.find_all('a', {'class':'MRTN__sc-1gofnyi-2 gACiYG'})
         for element in liste_fiches:

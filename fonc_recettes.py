@@ -10,7 +10,7 @@ class Recette:
     """
 
     """
-    def __init__(self, nom=None, ingredients=[], etapes=[], auteur=None, lien=None, temps=None, difficulte=None, note=None):
+    def __init__(self, nom, auteur=None, difficulte=None, temps=None, note=None, ingredients=[], etapes=[], lien=None):
         self.nom = nom
         self.auteur = auteur
         self.lien = lien
@@ -21,7 +21,22 @@ class Recette:
         self.etapes = etapes
 
     def __str__(self) -> str:
-        return f""
+        texte = f"Recette : {self.nom}"
+        if self.auteur:
+            texte += f"\nAuteur : {self.auteur}"
+        if self.difficulte:
+            texte += f"\nDifficulté : {self.difficulte}"
+        if self.temps:
+            texte += f"\nDurée : {self.temps}"
+        if self.note:
+            texte += f"\nNote : {self.note}"
+        if self.ingredients!=[]:
+            texte += f"\nIngrédients :\n{self.str_ingr()}"
+        if self.etapes!=[]:
+            texte += f"\nEtapes :\n{self.str_etap()}"
+        if self.lien:
+            texte += f"\nLien : {self.lien}"
+        return texte
 
     def str_ingr(self):
         """

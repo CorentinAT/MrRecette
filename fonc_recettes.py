@@ -1,11 +1,3 @@
-# options à faire :
-# creation de recette
-# passage sous forme de texte
-# faire une recherche (avec toutes les options)
-# prendre une page (choisie ou aleatoire)
-# prendre une recette sur la page (choisie ou aleatoire)
-# afficher les differentes parties de la recette (ingredients, auteur, etapes...)
-
 class Recette:
     """
 

@@ -1,15 +1,15 @@
-import requests
-import ssl
-import os
-import urllib
-from dotenv import load_dotenv
-from bs4 import BeautifulSoup
-from random import randint
-import fonc_recettes
+# import requests
+# import ssl
+# import os
+# import urllib
+# from dotenv import load_dotenv
+# from bs4 import BeautifulSoup
+# from random import randint
+# import fonc_recettes
 
-#version class
+# #version class
 
-# Remplacer ces deux lignes par "webhook = <lien du webhook>"
+# # Remplacer ces deux lignes par "webhook = <lien du webhook>"
 # load_dotenv()
 # webhook = os.getenv("webhook")
 

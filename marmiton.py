@@ -68,8 +68,3 @@ def recup_recette(url):
     for element in liste_etapes:
         recette.ajouter_etape(element.get_text())
     return recette
-
-test = Marmiton("porc")
-res = test.recherche()
-resu = recup_recette(res[5]['lien'])
-print(resu)

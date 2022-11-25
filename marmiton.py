@@ -67,6 +67,8 @@ def recup_recette(url):
             ingr = element.find('span', {'class':'RCP__sc-8cqrvd-3 itCXhd'}).get_text()
         try:
             qt = element.find('span', {'class':'SHRD__sc-10plygc-0 epviYI'}).get_text()
+            if qt==" " or qt=="":
+                raise ValueError()
             recette.ajouter_ingr(ingr, qt)
         except:
             recette.ajouter_ingr(ingr)

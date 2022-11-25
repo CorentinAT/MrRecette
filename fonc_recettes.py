@@ -38,10 +38,12 @@ class Recette:
         assert self.ingredients is not None, "Pas d'ingrédient associé à la recette"
         texte = ""
         for element in self.ingredients:
+            ingr = element[0]
+            ingr = ingr.title()
             try:
-                ingr = f"{element[0]} ({element[1]})"
+                ingr = f"{ingr} ({element[1]})"
             except:
-                ingr = element[0]
+                pass
             texte = texte + (f"{ingr}" if texte=="" else f"\n{ingr}")
         return texte
 

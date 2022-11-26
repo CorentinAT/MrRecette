@@ -2,7 +2,7 @@ import requests
 import os
 from dotenv import load_dotenv
 from random import randint
-from marmiton import Marmiton, recup_recette
+from modules.marmiton import Marmiton, recup_recette
 
 # Remplacer ces deux lignes par "webhook = <lien du webhook>"
 load_dotenv()

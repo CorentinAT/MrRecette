@@ -8,8 +8,11 @@ from modules.marmiton import Marmiton, recup_recette
 load_dotenv()
 webhook = os.getenv("webhook")
 
+# Recherche de page selon les options voulues avec le module marmiton
 options = Marmiton(type_plat='platprincipal', difficulte=1, cout=1, temps=45)
 recherche = options.recherche(randint(1, 83))
+
+# Récupération des attributs d'une recette aléatoire de la page en class du module fonc_recettes
 recette = recup_recette(recherche[randint(0,11)]['lien'])
 
 # Mise en forme de texte la note et les tableaux ingrédients et étapes pour l'envoi discord

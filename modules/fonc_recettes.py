@@ -96,7 +96,7 @@ class Recette:
             etape (str): Description de l'étape
             numero (int, optional): Place où l'étape sera placée dans la liste d'étapes, erreur si numéro trop bas. Defaults to None.
         """
-        assert numero>0, "L'étape 0 ou moins ne peut pas exister"
+        assert not numero or numero>0, "L'étape 0 ou moins ne peut pas exister"
         if not numero or numero-1>len(self.etapes):
             self.etapes.append(etape)
         else:

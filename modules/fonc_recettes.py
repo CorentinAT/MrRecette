@@ -67,7 +67,7 @@ class Recette:
         """Mise en forme de texte la liste d'étapes, erreur si pas d'étape
 
         Returns:
-            _type_: Sous la forme: <numéro d'étape>- <étape> <saut de ligne>...
+            texte (str): Sous la forme: <numéro d'étape>- <étape> <saut de ligne>...
         """
         assert self.etapes is not None, "Pas d'étape associée à la recette"
         texte = ""

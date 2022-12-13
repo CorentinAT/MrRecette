@@ -1,6 +1,6 @@
 class Recette:
     """Gérer, afficher et modifier des recettes"""
-    def __init__(self, nom:str, auteur:str=None, difficulte:str=None, temps:str=None, note:str=None, ingredients:list=[], etapes:list=[], lien:str=None):
+    def __init__(self, nom:str, auteur:str=None, difficulte:str=None, temps:str=None, note:str=None, ingredients:list=None, etapes:list=None, lien:str=None):
         """Tous les attributs de la recette
 
         Args:
@@ -37,9 +37,9 @@ class Recette:
             texte += f"\nDurée : {self.temps}"
         if self.note:
             texte += f"\nNote : {self.note}"
-        if self.ingredients!=[]:
+        if self.ingredients:
             texte += f"\nIngrédients :\n{self.str_ingr()}"
-        if self.etapes!=[]:
+        if self.etapes:
             texte += f"\nEtapes :\n{self.str_etap()}"
         if self.lien:
             texte += f"\nLien : {self.lien}"
@@ -51,7 +51,7 @@ class Recette:
         Returns:
             str: Sous la forme: <ingrédient> (<quantité(s'il y a)>) <saut de ligne>...
         """
-        assert self.ingredients is not None, "Pas d'ingrédient associé à la recette"
+        assert self.ingredients, "Pas d'ingrédient associé à la recette"
         texte = ""
         for element in self.ingredients:
             ingr = element[0]
@@ -84,6 +84,8 @@ class Recette:
             nom (str): Nom de l'ingrédient
             quantite (str, optional): Quantité de l'ingrédient, ex: "25 cl". Defaults to None.
         """
+        if not self.ingredients:
+            self.ingredients = []
         if quantite:
             self.ingredients.append([nom, quantite])
         else:
@@ -96,6 +98,8 @@ class Recette:
             etape (str): Description de l'étape
             numero (int, optional): Place où l'étape sera placée dans la liste d'étapes, erreur si numéro trop bas. Defaults to None.
         """
+        if not self.etapes:
+            self.etapes = []
         assert not numero or numero>0, "L'étape 0 ou moins ne peut pas exister"
         if not numero or numero-1>len(self.etapes):
             self.etapes.append(etape)

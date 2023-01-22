@@ -102,7 +102,7 @@ def recup_recette(url:str)->classmethod(Recette):
             recette.ajouter_ingr(ingr, qt)
         except:
             recette.ajouter_ingr(ingr)
-    liste_etapes = soup.find_all('p', {'class':'RCP__sc-1wtzf9a-3 jFIVDw'})
+    liste_etapes = soup.find_all('p', {'class':'RCP__sc-1wtzf9a-3 bFBrMO'})
     for element in liste_etapes:
         recette.ajouter_etape(element.get_text())
     return recette

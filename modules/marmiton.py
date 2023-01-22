@@ -71,7 +71,7 @@ class Marmiton:
             resultats.append(fiche)
         return resultats
 
-def recup_recette(url:str)->classmethod(Recette):
+def recup_recette(url:str)->Recette:
     """Récupère toutes les informations d'une recette depuis son url
 
     Args:

@@ -34,7 +34,7 @@ Les méthodes de cette classe sont les suivantes :
 
 ## Module marmiton
 
-Le module marmiton.py contient une classe **Marmiton** et une fonction **recup_recette**.
+Le module **marmiton.py** contient une classe **Marmiton** et une fonction **recup_recette**.
 
 La classe **Marmiton** permet de gérer les options de recherche d'une recette sur le site marmiton.
 Toutes les options de recherche sont dans un seul attribut **options**  qui est un dictionnaire pouvant avoir les attributs suivants :

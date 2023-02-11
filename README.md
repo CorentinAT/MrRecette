@@ -8,6 +8,10 @@ Fini, à maintenir à jour pour les changements de classes sur le site de marmit
 
 ##Fonctionnement
 
+Le projet contient 3 fichiers, un fichier **main.py** qui est le programme exécuté, qui s'occupe du choix aléatoire et de l'envoi sur discord.
+
+Il utilise le module (dans le fichier **modules**) **marmiton.py**, qui utilise lui même le module **fonc_recettes.py**.
+
 ###Module fonc_recettes
 
 Le module **fonc_recettes.py** contient une classe **Recette** qui permet de stocker et gérer des recettes avec ces attributs :

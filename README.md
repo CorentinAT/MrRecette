@@ -2,17 +2,17 @@
 
 MrRecette est un programme python qui envoie une recette aléatoire de marmiton sur un webhook discord.
 
-##Status
+## Status
 
 Fini, à maintenir à jour pour les changements de classes sur le site de marmiton.
 
-##Fonctionnement
+## Fonctionnement
 
 Le projet contient 3 fichiers, un fichier **main.py** qui est le programme exécuté, qui s'occupe du choix aléatoire et de l'envoi sur discord.
 
 Il utilise le module (dans le fichier **modules**) **marmiton.py**, qui utilise lui même le module **fonc_recettes.py**.
 
-###Module fonc_recettes
+### Module fonc_recettes
 
 Le module **fonc_recettes.py** contient une classe **Recette** qui permet de stocker et gérer des recettes avec ces attributs :
 
@@ -32,7 +32,7 @@ Les méthodes de cette classe sont les suivantes :
 - **ajouter_ingr()** pour ajouter un ingrédient, et eventuellement sa quantité
 - **ajouter_etape()** pour ajouter une étape, et eventuellement son numéro
 
-##Module marmiton
+## Module marmiton
 
 Le module marmiton.py contient une classe **Marmiton** et une fonction **recup_recette**.
 

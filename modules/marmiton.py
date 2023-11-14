@@ -82,27 +82,26 @@ def recup_recette(url:str)->Recette:
     """
     html = urllib.request.urlopen(url).read()
     soup = BeautifulSoup(html, 'html.parser')
-    recette = Recette(soup.find('h1', {'class':'SHRD__sc-10plygc-0 itJBWW'}).get_text())
+    recette = Recette(soup.find('h1').get_text())
     recette.lien = url
-    recette.auteur = soup.find('div', {'class':'RCP__sc-ox3jb6-5 fwQMuu'}).get_text()
-    temps_diff = soup.find_all('p', {'class':'RCP__sc-1qnswg8-1 iDYkZP'})
+    recette.auteur = soup.find('span', {'class':'recipe-author-note__author-name'}).get_text()
+    temps_diff = soup.find_all('div', {'class':'recipe-primary__item'})
     recette.temps = temps_diff[0].get_text()
     recette.difficulte = temps_diff[1].get_text()
-    recette.note = soup.find('span', {'class':'SHRD__sc-10plygc-0 jHwZwD'}).get_text()
-    liste_ingredients = soup.find_all('div', {'class':'MuiGrid-root MuiGrid-item MuiGrid-grid-xs-3 MuiGrid-grid-sm-3'})
+    recette.note = soup.find('span', {'class':'recipe-header__rating-text'}).get_text()
+    liste_ingredients = soup.find_all('div', {'class':'card-ingredient'})
     for element in liste_ingredients:
+        ingr = element.find('span', {'class':'ingredient-name'}).get_text().strip()
+        ingr = f"{ingr} " + element.find('span', {'class':'ingredient-complement'}).get_text().strip()
         try:
-            ingr = element.find('span', {'class':'RCP__sc-8cqrvd-3 cDbUWZ'}).get_text()
-        except:
-            ingr = element.find('span', {'class':'RCP__sc-8cqrvd-3 itCXhd'}).get_text()
-        try:
-            qt = element.find('span', {'class':'SHRD__sc-10plygc-0 epviYI'}).get_text()
+            qt = element.find('span', {'class':'unit'}).get_text().strip()
+            qt = element.find('span', {'class':'count'}).get_text().strip() + f" {qt}"
             if qt==" " or qt=="":
                 raise ValueError()
             recette.ajouter_ingr(ingr, qt)
         except:
             recette.ajouter_ingr(ingr)
-    liste_etapes = soup.find_all('p', {'class':'RCP__sc-1wtzf9a-3 bFBrMO'})
+    liste_etapes = soup.find_all('div', {'class':'recipe-step-list__container'})
     for element in liste_etapes:
-        recette.ajouter_etape(element.get_text())
+        recette.ajouter_etape(element.find('p').get_text())
     return recette

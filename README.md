@@ -27,6 +27,8 @@ Le module **fonc_recettes.py** contient une classe **Recette** qui permet de sto
 Les méthodes de cette classe sont les suivantes :
 
 - Le print pour afficher la recette au global
+  <br>
+  
 - **str_ingr()** pour convertir la liste des ingrédients en chaîne de caracètere mise en forme
 - **str_etap()** pour la même chose avec la liste d'étapes
 - **ajouter_ingr()** pour ajouter un ingrédient, et eventuellement sa quantité
